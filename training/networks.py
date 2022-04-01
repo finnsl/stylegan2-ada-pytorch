@@ -177,7 +177,7 @@ class MappingNetwork(torch.nn.Module):
         c_dim,                      # Conditioning label (C) dimensionality, 0 = no label.
         w_dim,                      # Intermediate latent (W) dimensionality.
         num_ws,                     # Number of intermediate latents to output, None = do not broadcast.
-        num_layers      = 8,        # Number of mapping layers.
+        num_layers      = 4,        # Number of mapping layers.
         embed_features  = None,     # Label embedding dimensionality, None = same as w_dim.
         layer_features  = None,     # Number of intermediate features in the mapping layers, None = same as w_dim.
         activation      = 'lrelu',  # Activation function: 'relu', 'lrelu', etc.
@@ -427,7 +427,7 @@ class SynthesisNetwork(torch.nn.Module):
         img_resolution,             # Output image resolution.
         img_channels,               # Number of color channels.
         channel_base    = 32768,    # Overall multiplier for the number of channels.
-        channel_max     = 512,      # Maximum number of channels in any layer.
+        channel_max     = 256,      # Maximum number of channels in any layer.
         num_fp16_res    = 0,        # Use FP16 for the N highest resolutions.
         **block_kwargs,             # Arguments for SynthesisBlock.
     ):
@@ -677,7 +677,7 @@ class Discriminator(torch.nn.Module):
         img_channels,                   # Number of input color channels.
         architecture        = 'resnet', # Architecture: 'orig', 'skip', 'resnet'.
         channel_base        = 32768,    # Overall multiplier for the number of channels.
-        channel_max         = 512,      # Maximum number of channels in any layer.
+        channel_max         = 256,      # Maximum number of channels in any layer.
         num_fp16_res        = 0,        # Use FP16 for the N highest resolutions.
         conv_clamp          = None,     # Clamp the output of convolution layers to +-X, None = disable clamping.
         cmap_dim            = None,     # Dimensionality of mapped conditioning label, None = default.
